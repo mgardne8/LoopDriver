@@ -14,3 +14,26 @@ config/name="Loop Bus"
 run/main_scene="uid://dsla6nr8pr85c"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[input]
+
+accelerate={
+"deadzone": 0.2,
+"events": []
+}
+steer_right={
+"deadzone": 0.2,
+"events": []
+}
+steer_left={
+"deadzone": 0.2,
+"events": []
+}
+brake={
+"deadzone": 0.2,
+"events": []
+}
+reverse={
+"deadzone": 0.2,
+"events": []
+}
