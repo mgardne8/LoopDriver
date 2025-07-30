@@ -1,11 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://oxr2ufc5wnr6"]
+[gd_scene load_steps=4 format=3 uid="uid://oxr2ufc5wnr6"]
 
 [ext_resource type="Script" uid="uid://b01xlqe2j5kcm" path="res://character_body_2d.gd" id="1_gkev4"]
+[ext_resource type="Texture2D" uid="uid://bfrpxoanqlad5" path="res://Assets/Art/spritesheet_vehicles.png" id="2_o81gf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucdfl"]
+atlas = ExtResource("2_o81gf")
+region = Rect2(284, 383.5, 66, 130)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_gkev4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = SubResource("AtlasTexture_ucdfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
