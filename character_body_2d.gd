@@ -44,7 +44,7 @@ func get_input():
 		handbraking = true
 		steering_angle = 20
 	steer_direction = turn * deg_to_rad(steering_angle)
-	if Input.is_action_pressed("accelerate"):
+	if Input.is_action_pressed("accelerate") and not handbraking:
 		acceleration = transform.x * engine_power
 	if Input.is_action_pressed("reverse"):
 		acceleration = transform.x * braking
