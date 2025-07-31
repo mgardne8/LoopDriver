@@ -9,7 +9,7 @@ var braking = -450
 var max_speed_rev = 250
 var slip_speed = 400
 var traction_fast = 0.1
-var traction_base : float = 0.90
+var traction_base : float = 0.7
 var traction :float = traction_base
 var handbreak_traction = 0.001
 var handbrake_strength = -100
@@ -21,8 +21,8 @@ var steer_direction
 func _physics_process(delta: float) -> void:
 	acceleration = Vector2.ZERO
 	handbraking = false
+	traction = lerp(traction,traction_base,0.08*delta)
 	steering_angle = 8
-	traction = lerp(traction, traction_base, 0.0001)
 	get_input()
 	apply_friction()
 	calculate_steering(delta)
@@ -45,6 +45,9 @@ func get_input():
 	if Input.is_action_pressed("handbrake"):
 		handbraking = true
 		steering_angle = 20
+		traction = handbreak_traction
+	if Input.is_action_just_released("handbrake"):
+		%RecoverTraction.start()
 	steer_direction = turn * deg_to_rad(steering_angle)
 	if Input.is_action_pressed("accelerate") and not handbraking:
 		acceleration = transform.x * engine_power
@@ -59,10 +62,6 @@ func calculate_steering(delta):
 	rear_wheel += velocity * delta
 	front_wheel += velocity.rotated(steer_direction) * delta
 	var new_heading = (front_wheel - rear_wheel).normalized()
-	#if velocity.length() > slip_speed:
-		#traction = traction_fast
-	if handbraking:
-		traction = lerp(traction,handbreak_traction,0.1)
 	var d = new_heading.dot(velocity.normalized())
 	if d > 0:
 		velocity = velocity.lerp(new_heading * velocity.length(),traction)
@@ -71,3 +70,7 @@ func calculate_steering(delta):
 
 	rotation = new_heading.angle()
 	
+
+
+func _on_recover_traction_timeout() -> void:
+	traction = traction_base
