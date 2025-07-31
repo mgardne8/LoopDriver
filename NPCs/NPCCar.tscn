@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://wxk8k8ltjdyl"]
 
-[ext_resource type="Script" uid="uid://dryi435tjfj1k" path="res://NPCs/npc_car.gd" id="1_nvfl2"]
+[ext_resource type="Script" path="res://NPCs/npc_car.gd" id="1_nvfl2"]
 [ext_resource type="Texture2D" uid="uid://bfrpxoanqlad5" path="res://Assets/Art/spritesheet_vehicles.png" id="2_khfyf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nvfl2"]
