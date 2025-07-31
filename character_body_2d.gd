@@ -5,9 +5,13 @@ var steering_angle = 15
 var engine_power = 900
 var friction = -0.5
 var drag = -0.001
+var braking = -450
+var max_speed_rev = 250
 var slip_speed = 400
 var traction_fast = 0.1
-var traction_slow = 1
+var traction_slow = 0.7
+var handbreak_slip = 0.001
+var handbrake_strength = -100
 
 var acceleration = Vector2.ZERO
 var steer_direction
@@ -36,14 +40,27 @@ func get_input():
 		
 	steer_direction = turn * deg_to_rad(steering_angle)
 	if Input.is_action_pressed("accelerate"):
-		acceleration = self.transform.x * engine_power
-
+		acceleration = transform.x * engine_power
+	if Input.is_action_pressed("reverse"):
+		acceleration = transform.x * braking
+		
+	if Input.is_action_pressed("handbrake") and velocity.length() > 1:
+		acceleration = transform.x * braking
+		
 func calculate_steering(delta):
 	var rear_wheel = position - transform.x * wheel_base/2
 	var front_wheel = position + transform.x * wheel_base/2
 	rear_wheel += velocity * delta
 	front_wheel += velocity.rotated(steer_direction) * delta
 	var new_heading = (front_wheel - rear_wheel).normalized()
-	velocity = new_heading * velocity.length()
+	var traction = traction_slow
+	if velocity.length() > slip_speed:
+		traction = traction_fast
+	var d = new_heading.dot(velocity.normalized())
+	if d > 0:
+		velocity = velocity.lerp(new_heading * velocity.length(),traction)
+	if d < 0:
+		velocity = -new_heading * min(velocity.length(), max_speed_rev)
+
 	rotation = new_heading.angle()
 	
