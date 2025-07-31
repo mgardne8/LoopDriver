@@ -65,7 +65,7 @@ func calculate_steering(delta):
 	var d = new_heading.dot(velocity.normalized())
 	if d > 0:
 		velocity = velocity.lerp(new_heading * velocity.length(),traction)
-	if d < 0 :
+	if d < -0.1 and not handbraking:
 		velocity = -new_heading * min(velocity.length(), max_speed_rev)
 
 	rotation = new_heading.angle()
