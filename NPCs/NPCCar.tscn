@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://wxk8k8ltjdyl"]
+
+[ext_resource type="Script" path="res://NPCs/npc_car.gd" id="1_nvfl2"]
+[ext_resource type="Texture2D" uid="uid://bfrpxoanqlad5" path="res://Assets/Art/spritesheet_vehicles.png" id="2_khfyf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nvfl2"]
+radius = 34.0
+height = 124.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esnuh"]
+atlas = ExtResource("2_khfyf")
+region = Rect2(283, 121.5, 69, 122)
+
+[node name="NpcCar" type="RigidBody2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_nvfl2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_nvfl2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = SubResource("AtlasTexture_esnuh")
