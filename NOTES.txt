@@ -1,0 +1,21 @@
+TODO
+
+Bus Stop Object
+	* Sprite
+	* Zone to check for bus
+	* People waiting in line counter
+	* When bus here and velocity, slowly move people from stop to bus, increasing bus count
+	* Also release some people from bus
+
+	can only pick/up drop off at next station - no stop if empty, but when near someone can indicate wanting off
+
+	"Game handler" - score, people, points, next stop
+	
+	Sound?
+	Start Screen
+	Game Over --- too many people waiting globally, you got fired
+	
+	
+	NPC cars?!?!
+	
+	Finish Map, better art?
