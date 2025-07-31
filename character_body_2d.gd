@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var wheel_base = 70
-var steering_angle = 8
+var steering_angle = 5
 var engine_power = 1200
 var friction = -0.5
 var drag = -0.001
@@ -9,7 +9,7 @@ var braking = -450
 var max_speed_rev = 250
 var slip_speed = 400
 var traction_fast = 0.1
-var traction_base : float = 0.8
+var traction_base : float = 0.90
 var traction :float = traction_base
 var handbreak_traction = 0.001
 var handbrake_strength = -100
@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	acceleration = Vector2.ZERO
 	handbraking = false
 	steering_angle = 8
-	traction = lerp(traction, traction_base, 0.001)
+	traction = lerp(traction, traction_base, 0.0001)
 	get_input()
 	apply_friction()
 	calculate_steering(delta)
@@ -62,7 +62,7 @@ func calculate_steering(delta):
 	#if velocity.length() > slip_speed:
 		#traction = traction_fast
 	if handbraking:
-		traction = handbreak_traction
+		traction = lerp(traction,handbreak_traction,0.1)
 	var d = new_heading.dot(velocity.normalized())
 	if d > 0:
 		velocity = velocity.lerp(new_heading * velocity.length(),traction)
