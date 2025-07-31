@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var wheel_base = 70
-var steering_angle = 10
+var steering_angle = 8
 var engine_power = 900
 var friction = -0.5
 var drag = -0.001
@@ -20,6 +20,7 @@ var steer_direction
 func _physics_process(delta: float) -> void:
 	acceleration = Vector2.ZERO
 	handbraking = false
+	steering_angle = 8
 	get_input()
 	apply_friction()
 	calculate_steering(delta)
@@ -39,15 +40,16 @@ func get_input():
 		
 	if Input.is_action_pressed("steer_left"):
 		turn -=1
-		
+	if Input.is_action_pressed("handbrake"):
+		handbraking = true
+		steering_angle = 20
 	steer_direction = turn * deg_to_rad(steering_angle)
 	if Input.is_action_pressed("accelerate"):
 		acceleration = transform.x * engine_power
 	if Input.is_action_pressed("reverse"):
 		acceleration = transform.x * braking
 		
-	if Input.is_action_pressed("handbrake"):
-		handbraking = true
+	
 		
 func calculate_steering(delta):
 	var rear_wheel = position - transform.x * wheel_base/2
