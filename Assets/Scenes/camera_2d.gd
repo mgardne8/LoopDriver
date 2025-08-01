@@ -15,7 +15,7 @@ func apply_shake():
 func _physics_process(delta: float) -> void:
 		# Camera movement and zoom code
 	position = position.lerp(player.global_position + Vector2(350*(player.velocity.length()/875),0).rotated(player.rotation),8*delta)
-	var zoom_level = lerp(0.8-(player.velocity.length()/875)/3,zoom[0],0.5*delta)
+	var zoom_level = lerp(zoom[0],1.2-(player.velocity.length()/875)/2,1*delta)
 	zoom = Vector2(zoom_level,zoom_level)
 
 func _process(delta: float) -> void:
