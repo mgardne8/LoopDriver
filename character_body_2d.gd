@@ -14,9 +14,16 @@ var traction :float = traction_base
 var handbreak_traction = 0.001
 var handbrake_strength = -100
 var handbraking = false
+var weight = 1
+var velocity_prev
+
+var passenger_count : int
 
 var acceleration = Vector2.ZERO
 var steer_direction
+
+func _ready() -> void:
+	passenger_count = 0
 
 func _physics_process(delta: float) -> void:
 	acceleration = Vector2.ZERO
@@ -28,6 +35,11 @@ func _physics_process(delta: float) -> void:
 	calculate_steering(delta)
 	velocity += acceleration * delta
 	move_and_slide()
+	
+	#for i in get_slide_collision_count():
+		#var c = get_slide_collision(i)
+		#if c.get_collider() is RigidBody2D:
+			#c.get_collider().apply_central_impulse(-c.get_normal() * velocity.length() * weight)
 	
 func apply_friction():
 	if velocity.length() < 5:
