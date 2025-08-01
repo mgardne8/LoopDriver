@@ -14,6 +14,9 @@ var traction :float = traction_base
 var handbreak_traction = 0.001
 var handbrake_strength = -100
 var handbraking = false
+var next_stop : int = 0
+@export var busStops : Array[Node2D] 
+@export var stopCountLabels : Array[Label]
 
 var max_passengers = 30
 var passenger_count : int
@@ -27,6 +30,14 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	%Passengers.text = str(passenger_destination)
+	%Point_Label.text = "Dollas $" + str(GlobalController.Points)
+	$NextStopDirection.look_at(busStops[next_stop].global_position)
+	if GlobalController.game_over:
+		%Game_Over.visible = true
+	
+	for i in range(stopCountLabels.size()):
+		var label = stopCountLabels[i]
+		label.text = "Waiting " + str(busStops[i].passengers_waiting)
 	acceleration = Vector2.ZERO
 	handbraking = false
 	traction = lerp(traction,traction_base,0.08*delta)
@@ -51,25 +62,25 @@ func apply_friction():
 
 func get_input():
 	var turn = 0
-	if Input.is_action_pressed("steer_right"):
+	if Input.is_action_pressed("steer_right") and !GlobalController.game_over:
 		turn +=1
 		
-	if Input.is_action_pressed("steer_left"):
+	if Input.is_action_pressed("steer_left") and !GlobalController.game_over:
 		turn -=1
-	if Input.is_action_pressed("handbrake"):
+	if Input.is_action_pressed("handbrake") and !GlobalController.game_over:
 		handbraking = true
 		steering_angle = 20
 		traction = handbreak_traction
 		if velocity.length() < 130:
 			friction = -10
-	if Input.is_action_just_released("handbrake"):
+	if Input.is_action_just_released("handbrake") and !GlobalController.game_over:
 		friction = -0.8
 	if Input.is_action_just_released("handbrake"):
 		%RecoverTraction.start()
 	steer_direction = turn * deg_to_rad(steering_angle)
-	if Input.is_action_pressed("accelerate") and not handbraking:
+	if Input.is_action_pressed("accelerate") and not handbraking and !GlobalController.game_over:
 		acceleration = transform.x * engine_power
-	if Input.is_action_pressed("reverse") and not handbraking:
+	if Input.is_action_pressed("reverse") and not handbraking and !GlobalController.game_over:
 		acceleration = transform.x * braking
 		
 	
@@ -88,10 +99,16 @@ func calculate_steering(delta):
 
 	rotation = new_heading.angle()
 
+func set_next_stop(): 
+	if next_stop <5:
+		next_stop +=1
+	else:
+		next_stop = 0
 
 func passenger_boarding(destination : int):
 	passenger_count += 1
 	passenger_destination[destination] += 1
+	
 	
 
 func passenger_disembark(destination : int):

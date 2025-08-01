@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://oxr2ufc5wnr6"]
+[gd_scene load_steps=4 format=3 uid="uid://oxr2ufc5wnr6"]
 
 [ext_resource type="Script" uid="uid://b01xlqe2j5kcm" path="res://character_body_2d.gd" id="1_gkev4"]
 [ext_resource type="Texture2D" uid="uid://cj5bry5baabpr" path="res://Assets/Art/busbus.png" id="2_o81gf"]
-[ext_resource type="Texture2D" uid="uid://d0scy25c2oq8d" path="res://Assets/Art/arrow.png" id="3_ucdfl"]
-[ext_resource type="PackedScene" uid="uid://b77lw667cxrvj" path="res://Menus and Controllers/game_over.tscn" id="4_n5aai"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o81gf"]
 radius = 36.0
@@ -32,7 +30,6 @@ one_shot = true
 
 [node name="Passengers" type="Label" parent="."]
 unique_name_in_owner = true
-visible = false
 offset_left = -100.0
 offset_top = -43.0
 offset_right = 111.0
@@ -40,89 +37,74 @@ offset_bottom = 40.0
 theme_override_font_sizes/font_size = 60
 text = "COUNT"
 
-[node name="NextStopDirection" type="Area2D" parent="."]
-unique_name_in_owner = true
-
-[node name="Sprite2D2" type="Sprite2D" parent="NextStopDirection"]
-position = Vector2(164, 0)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_ucdfl")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Game_Over" parent="CanvasLayer" instance=ExtResource("4_n5aai")]
-unique_name_in_owner = true
-visible = false
 
 [node name="Point_Label" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 737.0
-offset_top = 1.0
-offset_right = 953.0
-offset_bottom = 84.0
+offset_left = 647.0
+offset_right = 863.0
+offset_bottom = 83.0
 theme_override_colors/font_color = Color(0.332342, 0.975917, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "POINTS"
 
 [node name="WaitingAt0" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 6.0
-offset_top = 5.0
-offset_right = 229.0
-offset_bottom = 47.0
-theme_override_colors/font_color = Color(0.960784, 0, 0, 1)
-theme_override_constants/outline_size = 0
+offset_left = -2.0
+offset_top = 2.0
+offset_right = 221.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 90
 theme_override_font_sizes/font_size = 30
 text = "DESTINATION 0"
 
 [node name="WaitingAt1" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 8.0
+offset_left = 3.0
 offset_top = 42.0
-offset_right = 231.0
+offset_right = 226.0
 offset_bottom = 84.0
-theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 30
 text = "DESTINATION 1"
 
 [node name="WaitingAt2" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 10.0
-offset_top = 80.0
-offset_right = 233.0
-offset_bottom = 122.0
+offset_left = 4.0
+offset_top = 81.0
+offset_right = 227.0
+offset_bottom = 123.0
 theme_override_colors/font_color = Color(1, 0.552941, 0, 1)
-theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 30
 text = "DESTINATION 1"
 
 [node name="WaitingAt3" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
 offset_left = 236.0
-offset_top = 6.0
+offset_top = 5.0
 offset_right = 459.0
-offset_bottom = 48.0
+offset_bottom = 47.0
 theme_override_colors/font_color = Color(0.194612, 0.16775, 0.874724, 1)
-theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 30
 text = "DESTINATION 1"
 
 [node name="WaitingAt4" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
 offset_left = 237.0
-offset_top = 41.0
+offset_top = 42.0
 offset_right = 460.0
-offset_bottom = 83.0
+offset_bottom = 84.0
 theme_override_colors/font_color = Color(0.232984, 0.992144, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "DESTINATION 1"
 
 [node name="WaitingAt5" type="Label" parent="CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 238.0
-offset_top = 80.0
-offset_right = 461.0
-offset_bottom = 122.0
+offset_left = 239.0
+offset_top = 82.0
+offset_right = 462.0
+offset_bottom = 124.0
 theme_override_colors/font_color = Color(0.84159, 0.752667, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "DESTINATION 1"

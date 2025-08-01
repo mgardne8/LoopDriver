@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://oxr2ufc5wnr6"]
+
+[ext_resource type="Script" uid="uid://b01xlqe2j5kcm" path="res://character_body_2d.gd" id="1_gkev4"]
+[ext_resource type="Texture2D" uid="uid://cj5bry5baabpr" path="res://Assets/Art/busbus.png" id="2_o81gf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o81gf"]
+radius = 36.0
+height = 264.0
+
+[node name="PlayerBus" type="CharacterBody2D" groups=["PlayerBus"]]
+collision_layer = 2
+collision_mask = 3
+platform_on_leave = 2
+platform_floor_layers = 4294967291
+script = ExtResource("1_gkev4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_o81gf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_o81gf")
+
+[node name="RecoverTraction" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.8
+one_shot = true
+
+[node name="Passengers" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -100.0
+offset_top = -43.0
+offset_right = 111.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 60
+text = "COUNT"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Point_Label" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 647.0
+offset_right = 863.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0.332342, 0.975917, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "POINTS"
+
+[node name="WaitingAt1" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = -1.0
+offset_top = 35.0
+offset_right = 197.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "DESTINATION 0"
+
+[node name="WaitingAt2" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_top = 71.0
+offset_right = 223.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 30
+text = "DESTINATION 1"
+
+[connection signal="timeout" from="RecoverTraction" to="." method="_on_recover_traction_timeout"]
