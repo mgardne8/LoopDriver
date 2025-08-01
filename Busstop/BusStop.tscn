@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1jb12ryhqsh8"]
 
-[ext_resource type="Script" path="res://Busstop/bus_stop.gd" id="1_03mo6"]
+[ext_resource type="Script" uid="uid://kgm2sthhmjs2" path="res://Busstop/bus_stop.gd" id="1_03mo6"]
 [ext_resource type="Texture2D" uid="uid://bgtd857gu0djt" path="res://Assets/Art/Buildings/building.png" id="2_hcnyk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fg8rs"]
