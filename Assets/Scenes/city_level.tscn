@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dsla6nr8pr85c"]
+[gd_scene load_steps=14 format=4 uid="uid://dsla6nr8pr85c"]
 
 [ext_resource type="Texture2D" uid="uid://c14hs0pvptwif" path="res://Assets/Art/spritesheet_tiles.png" id="1_i0rqf"]
 [ext_resource type="PackedScene" uid="uid://oxr2ufc5wnr6" path="res://PlayerBus/PlayerBus.tscn" id="2_xx8tv"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://c2bclqamlhk6d" path="res://Assets/Art/Buildings/buildingssoddlb.png" id="7_vo2fp"]
 [ext_resource type="Texture2D" uid="uid://dlxyj2ei8qur5" path="res://Assets/Art/Buildings/h.png" id="8_1g1sn"]
 [ext_resource type="Texture2D" uid="uid://djvcl66wdokvi" path="res://Assets/Art/Buildings/buildinghousegrey.png" id="9_oj2qf"]
+[ext_resource type="PackedScene" uid="uid://wxk8k8ltjdyl" path="res://NPCs/NPCCar.tscn" id="10_1shv3"]
+[ext_resource type="PackedScene" uid="uid://c1jb12ryhqsh8" path="res://Busstop/BusStop.tscn" id="11_e7jev"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fda8d"]
 texture = ExtResource("1_i0rqf")
@@ -384,3 +386,9 @@ texture = ExtResource("8_1g1sn")
 position = Vector2(343, -3781)
 scale = Vector2(0.542276, 0.535049)
 texture = ExtResource("9_oj2qf")
+
+[node name="NpcCar" parent="." instance=ExtResource("10_1shv3")]
+position = Vector2(-4186, 177)
+
+[node name="BusStop" parent="." instance=ExtResource("11_e7jev")]
+position = Vector2(-4501, 39)

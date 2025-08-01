@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://wxk8k8ltjdyl"]
+[gd_scene load_steps=6 format=3 uid="uid://wxk8k8ltjdyl"]
 
 [ext_resource type="Script" path="res://NPCs/npc_car.gd" id="1_nvfl2"]
 [ext_resource type="Texture2D" uid="uid://bfrpxoanqlad5" path="res://Assets/Art/spritesheet_vehicles.png" id="2_khfyf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_x45ld"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nvfl2"]
 radius = 34.0
@@ -13,6 +15,9 @@ region = Rect2(283, 121.5, 69, 122)
 
 [node name="NpcCar" type="RigidBody2D"]
 position = Vector2(0, -1)
+collision_layer = 4
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_x45ld")
 script = ExtResource("1_nvfl2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
