@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://dsla6nr8pr85c"]
+[gd_scene load_steps=10 format=4 uid="uid://dsla6nr8pr85c"]
 
 [ext_resource type="Texture2D" uid="uid://c14hs0pvptwif" path="res://Assets/Art/spritesheet_tiles.png" id="1_i0rqf"]
 [ext_resource type="Texture2D" uid="uid://xrqq2hjptb0o" path="res://Assets/Art/CityTiles.png" id="1_o8j8v"]
 [ext_resource type="PackedScene" uid="uid://oxr2ufc5wnr6" path="res://PlayerBus/PlayerBus.tscn" id="2_xx8tv"]
 [ext_resource type="Script" uid="uid://f51tml03x8a7" path="res://Assets/Scenes/camera_2d.gd" id="3_gkdqf"]
+[ext_resource type="PackedScene" uid="uid://c1jb12ryhqsh8" path="res://Busstop/BusStop.tscn" id="5_66coj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fda8d"]
 texture = ExtResource("1_i0rqf")
@@ -369,3 +370,26 @@ rotation = 3.13101
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("3_gkdqf")
 player = NodePath("../Player")
+
+[node name="BusStop0" parent="." instance=ExtResource("5_66coj")]
+position = Vector2(638, 1978)
+
+[node name="BusStop1" parent="." instance=ExtResource("5_66coj")]
+position = Vector2(-70, 931)
+stop_number = 1
+
+[node name="BusStop2" parent="." instance=ExtResource("5_66coj")]
+position = Vector2(-1043, -55)
+stop_number = 2
+
+[node name="BusStop3" parent="." instance=ExtResource("5_66coj")]
+position = Vector2(-2535, -52)
+stop_number = 3
+
+[node name="BusStop4" parent="." instance=ExtResource("5_66coj")]
+position = Vector2(-3388, -55)
+stop_number = 4
+
+[node name="BusStop5" parent="." instance=ExtResource("5_66coj")]
+position = Vector2(-4356, -62)
+stop_number = 5

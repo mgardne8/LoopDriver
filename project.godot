@@ -15,6 +15,10 @@ run/main_scene="res://Assets/Scenes/city_level.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalController="*res://Menus and Controllers/global_controller.gd"
+
 [input]
 
 accelerate={

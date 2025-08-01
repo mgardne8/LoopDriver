@@ -1,10 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1jb12ryhqsh8"]
+[gd_scene load_steps=3 format=3 uid="uid://c1jb12ryhqsh8"]
 
 [ext_resource type="Script" uid="uid://kgm2sthhmjs2" path="res://Busstop/bus_stop.gd" id="1_03mo6"]
-[ext_resource type="Texture2D" uid="uid://bgtd857gu0djt" path="res://Assets/Art/Buildings/building.png" id="2_hcnyk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fg8rs"]
-size = Vector2(47, 100)
+size = Vector2(126.75, 100)
 
 [node name="BusStop" type="Node2D"]
 script = ExtResource("1_03mo6")
@@ -13,7 +12,6 @@ script = ExtResource("1_03mo6")
 collision_mask = 3
 
 [node name="BusParkingCol" type="CollisionShape2D" parent="Busparking"]
-position = Vector2(25, 0)
 shape = SubResource("RectangleShape2D_fg8rs")
 
 [node name="NewPassengerArrival" type="Timer" parent="."]
@@ -36,13 +34,12 @@ unique_name_in_owner = true
 wait_time = 0.8
 one_shot = true
 
-[node name="Building" type="Sprite2D" parent="."]
-position = Vector2(21, -1.65612)
-rotation = 1.5708
-scale = Vector2(0.129405, 0.1)
-texture = ExtResource("2_hcnyk")
+[node name="PassengerLeavingTime" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
 
 [connection signal="body_entered" from="Busparking" to="." method="_on_busparking_body_entered"]
 [connection signal="body_exited" from="Busparking" to="." method="_on_busparking_body_exited"]
 [connection signal="timeout" from="NewPassengerArrival" to="." method="_on_new_passenger_arrival_timeout"]
 [connection signal="timeout" from="PassengerBoardingTime" to="." method="_on_passenger_boarding_time_timeout"]
+[connection signal="timeout" from="PassengerLeavingTime" to="." method="_on_passenger_leaving_time_timeout"]

@@ -15,16 +15,18 @@ var handbreak_traction = 0.001
 var handbrake_strength = -100
 var handbraking = false
 
-
+var max_passengers = 30
 var passenger_count : int
 
 var acceleration = Vector2.ZERO
 var steer_direction
+var passenger_destination : Array [int] = [0,0,0,0,0,0]  #will need to add 1 value for each bus stop (if we go above 6 bus stops)
 
 func _ready() -> void:
 	passenger_count = 0
 
 func _physics_process(delta: float) -> void:
+	%Passengers.text = str(passenger_destination)
 	acceleration = Vector2.ZERO
 	handbraking = false
 	traction = lerp(traction,traction_base,0.08*delta)
@@ -46,6 +48,7 @@ func apply_friction():
 	var friction_force = velocity * friction
 	var drag_force = velocity * velocity.length() *drag
 	acceleration += friction_force + drag_force
+
 func get_input():
 	var turn = 0
 	if Input.is_action_pressed("steer_right"):
@@ -84,8 +87,16 @@ func calculate_steering(delta):
 		velocity = -new_heading * min(velocity.length(), max_speed_rev)
 
 	rotation = new_heading.angle()
+
+
+func passenger_boarding(destination : int):
+	passenger_count += 1
+	passenger_destination[destination] += 1
 	
 
+func passenger_disembark(destination : int):
+	passenger_count -= 1
+	passenger_destination[destination] -= 1
 
 func _on_recover_traction_timeout() -> void:
 	traction = traction_base

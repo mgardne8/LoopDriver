@@ -38,4 +38,13 @@ unique_name_in_owner = true
 wait_time = 0.8
 one_shot = true
 
+[node name="Passengers" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -100.0
+offset_top = -43.0
+offset_right = 111.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 60
+text = "COUNT"
+
 [connection signal="timeout" from="RecoverTraction" to="." method="_on_recover_traction_timeout"]
